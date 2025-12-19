@@ -1,3 +1,4 @@
+
 import {
   Transaction,
   CashFlowSummary,
@@ -401,10 +402,16 @@ export function detectSilentExpenseKillers(
 export function calculateWhatIfScenario(
   summary: CashFlowSummary,
   scenario: WhatIfScenario
-): WhatIfResult {
-  const { currentBalance, burnRate, totalIncome, totalExpenses } = summary;
+): WhatIfResult & { baselineBurn: number; baselineRunway: number; baselineNetCashFlow: number } {
+  const { currentBalance, totalIncome, totalExpenses } = summary;
 
-  // Calculate new expenses
+  // Calculate BASELINE (Current) Net stats
+  // We use current month's income/expense for the "What If" baseline to be consistent with the sliders
+  const currentNetCashFlow = totalIncome - totalExpenses;
+  const currentNetBurn = Math.max(0, -currentNetCashFlow);
+  const currentRunway = currentNetBurn > 0 ? Math.floor(currentBalance / currentNetBurn) : 999;
+
+  // Calculate NEW (Scenario) stats
   const hiringCost = scenario.hireCount * scenario.avgSalary;
   const marketingChange = totalExpenses * (scenario.marketingChange / 100);
   const generalExpenseChange = totalExpenses * (scenario.expenseChange / 100);
@@ -423,22 +430,22 @@ export function calculateWhatIfScenario(
 
   // Generate summary
   let impactSummary = '';
-  if (newNetCashFlow > summary.netCashFlow) {
-    if (newNetCashFlow > 0 && summary.netCashFlow <= 0) {
-      impactSummary = `This scenario makes you profitable with $${newNetCashFlow.toLocaleString()} positive flow!`;
+  const netFlowDiff = newNetCashFlow - currentNetCashFlow;
+
+  if (newNetCashFlow > currentNetCashFlow) {
+    if (newNetCashFlow > 0 && currentNetCashFlow <= 0) {
+      impactSummary = `This scenario makes you profitable with $${Math.round(newNetCashFlow).toLocaleString()} positive flow!`;
     } else {
-      impactSummary = `This scenario improves your monthly cash flow by $${(newNetCashFlow - summary.netCashFlow).toLocaleString()}!`;
+      impactSummary = `This scenario improves your monthly cash flow by $${Math.round(netFlowDiff).toLocaleString()}!`;
     }
-  } else if (newBurnRate > burnRate) {
-    // If we are burning more
-    if (summary.runwayMonths > newRunway && summary.runwayMonths < 999) {
-      impactSummary = `This scenario reduces your runway by ${summary.runwayMonths - newRunway} months.`;
+  } else if (newBurnRate > currentNetBurn) {
+    if (currentRunway > newRunway && currentRunway < 999) {
+      impactSummary = `This scenario reduces your runway by ${currentRunway - newRunway} months.`;
     } else {
-      impactSummary = `This scenario increases your monthly burn by $${(newBurnRate - burnRate).toLocaleString()}.`;
+      impactSummary = `This scenario increases your monthly burn by $${Math.round(newBurnRate - currentNetBurn).toLocaleString()}.`;
     }
-  } else if (newBurnRate < burnRate) {
-    // Burning less
-    impactSummary = `This scenario extends your runway or saves you $${(burnRate - newBurnRate).toLocaleString()} monthly!`;
+  } else if (newBurnRate < currentNetBurn) {
+    impactSummary = `This scenario extends your runway or saves you $${Math.round(currentNetBurn - newBurnRate).toLocaleString()} monthly!`;
   } else {
     impactSummary = "This scenario maintains your current financial trajectory.";
   }
@@ -449,6 +456,9 @@ export function calculateWhatIfScenario(
     cashOutDate,
     impactSummary,
     newNetCashFlow: Math.round(newNetCashFlow),
+    baselineBurn: Math.round(currentNetBurn),
+    baselineRunway: Math.min(999, currentRunway),
+    baselineNetCashFlow: Math.round(currentNetCashFlow),
   };
 }
 

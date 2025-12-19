@@ -43,9 +43,9 @@ export function WhatIfSimulator({ summary, currency }: WhatIfSimulatorProps) {
     });
   };
 
-  const runwayChange = result.newRunway - summary.runwayMonths;
-  const burnChange = result.newBurnRate - summary.burnRate;
-  const netFlowChange = result.newNetCashFlow - summary.netCashFlow;
+  const runwayChange = result.newRunway - result.baselineRunway;
+  const burnChange = result.newBurnRate - result.baselineBurn;
+  const netFlowChange = result.newNetCashFlow - result.baselineNetCashFlow;
 
   return (
     <Card className="card-elevated">
@@ -207,7 +207,7 @@ export function WhatIfSimulator({ summary, currency }: WhatIfSimulatorProps) {
               )}>
                 {result.newRunway > 100 ? '∞' : `${result.newRunway} months`}
               </p>
-              {runwayChange !== 0 && result.newRunway <= 100 && (
+              {runwayChange !== 0 && result.newRunway <= 100 && result.baselineRunway <= 100 && (
                 <p className={cn(
                   'text-xs font-medium',
                   runwayChange < 0 ? 'text-danger' : 'text-success'

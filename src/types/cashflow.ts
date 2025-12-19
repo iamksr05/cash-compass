@@ -160,6 +160,9 @@ export interface WhatIfResult {
   cashOutDate: Date | null;
   impactSummary: string;
   newNetCashFlow: number;
+  baselineBurn: number;
+  baselineRunway: number;
+  baselineNetCashFlow: number;
 }
 
 export interface PanicAlert {
