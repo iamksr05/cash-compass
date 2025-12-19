@@ -62,9 +62,7 @@ export function Sidebar({ currentPage, onNavigate, isOpen, onClose }: SidebarPro
         {/* Header */}
         <div className="flex h-16 items-center justify-between border-b border-sidebar-border px-6">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-sidebar-primary">
-              <Wallet className="h-5 w-5 text-sidebar-primary-foreground" />
-            </div>
+            <img src="/logo.png" alt="Cash Compass" className="h-10 w-10 object-contain rounded-xl" />
             <div>
               <h1 className="font-bold text-sidebar-foreground">CashFlow</h1>
               <p className="text-xs text-sidebar-foreground/60">Money Tracker</p>
