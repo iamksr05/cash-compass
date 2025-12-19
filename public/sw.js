@@ -1,9 +1,10 @@
-const CACHE_NAME = 'cash-compass-v1';
+const CACHE_NAME = 'cash-compass-v2';
 const urlsToCache = [
     '/',
     '/index.html',
     '/manifest.json',
     '/logo.svg',
+    '/logo-maskable.svg',
     '/src/main.tsx',
 ];
 
@@ -21,7 +22,6 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request)
             .then((response) => {
-                // Cache hit - return response
                 if (response) {
                     return response;
                 }
