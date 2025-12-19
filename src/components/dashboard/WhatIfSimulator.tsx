@@ -205,7 +205,7 @@ export function WhatIfSimulator({ summary, currency }: WhatIfSimulatorProps) {
                 'text-lg font-bold number-display',
                 runwayChange < 0 ? 'text-danger' : runwayChange > 0 ? 'text-success' : 'text-foreground'
               )}>
-                {result.newRunway > 100 ? '∞' : `${result.newRunway} months`}
+                {result.newRunway > 100 ? 'Infinite' : `${result.newRunway} months`}
               </p>
               {runwayChange !== 0 && result.newRunway <= 100 && result.baselineRunway <= 100 && (
                 <p className={cn(
