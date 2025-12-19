@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core palette - Warm, trustworthy fintech colors */
+    --background: 40 20% 98%;
+    --foreground: 220 25% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 12%;
+
+    /* Primary - Teal/Emerald for trust and money */
+    --primary: 168 65% 38%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 168 65% 48%;
+
+    /* Secondary - Soft warm gray */
+    --secondary: 40 15% 94%;
+    --secondary-foreground: 220 20% 25%;
+
+    /* Muted - Subtle backgrounds */
+    --muted: 40 10% 96%;
+    --muted-foreground: 220 10% 50%;
+
+    /* Accent - Coral for CTAs and highlights */
+    --accent: 12 85% 62%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Semantic colors */
+    --success: 158 60% 42%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --danger: 0 72% 51%;
+    --danger-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 15% 90%;
+    --input: 40 15% 90%;
+    --ring: 168 65% 38%;
+
+    --radius: 0.75rem;
+
+    /* Chart colors */
+    --chart-income: 158 60% 42%;
+    --chart-expense: 0 72% 60%;
+    --chart-1: 168 65% 38%;
+    --chart-2: 12 85% 62%;
+    --chart-3: 38 92% 50%;
+    --chart-4: 262 60% 58%;
+    --chart-5: 200 70% 50%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(168 65% 38%), hsl(168 65% 48%));
+    --gradient-accent: linear-gradient(135deg, hsl(12 85% 62%), hsl(12 85% 72%));
+    --gradient-success: linear-gradient(135deg, hsl(158 60% 42%), hsl(158 60% 52%));
+    --gradient-warning: linear-gradient(135deg, hsl(38 92% 50%), hsl(38 92% 60%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(40 20% 99%));
+    --gradient-hero: linear-gradient(135deg, hsl(168 65% 38%) 0%, hsl(180 50% 45%) 50%, hsl(200 60% 40%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(220 25% 12% / 0.03);
+    --shadow-md: 0 4px 6px -1px hsl(220 25% 12% / 0.05), 0 2px 4px -2px hsl(220 25% 12% / 0.03);
+    --shadow-lg: 0 10px 15px -3px hsl(220 25% 12% / 0.08), 0 4px 6px -4px hsl(220 25% 12% / 0.03);
+    --shadow-glow: 0 0 40px hsl(168 65% 38% / 0.15);
+    --shadow-card: 0 1px 3px hsl(220 25% 12% / 0.04), 0 4px 12px hsl(220 25% 12% / 0.04);
+
+    /* Sidebar */
+    --sidebar-background: 220 25% 12%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 168 65% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 20% 18%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 220 20% 20%;
+    --sidebar-ring: 168 65% 48%;
+  }
+
+  .dark {
+    --background: 220 25% 8%;
+    --foreground: 40 20% 95%;
+
+    --card: 220 20% 12%;
+    --card-foreground: 40 20% 95%;
+
+    --popover: 220 20% 12%;
+    --popover-foreground: 40 20% 95%;
+
+    --primary: 168 65% 48%;
+    --primary-foreground: 220 25% 8%;
+    --primary-glow: 168 65% 58%;
+
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 40 15% 85%;
+
+    --muted: 220 15% 15%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 12 85% 62%;
+    --accent-foreground: 0 0% 100%;
+
+    --success: 158 60% 48%;
+    --warning: 38 92% 55%;
+    --danger: 0 72% 55%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 168 65% 48%;
+
+    --gradient-card: linear-gradient(180deg, hsl(220 20% 12%), hsl(220 20% 10%));
+    --shadow-card: 0 1px 3px hsl(0 0% 0% / 0.2), 0 4px 12px hsl(0 0% 0% / 0.15);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/50 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/30;
+  }
+}
+
+@layer components {
+  /* Card styles */
+  .card-elevated {
+    @apply bg-card rounded-xl border border-border/50;
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-glow {
+    @apply relative overflow-hidden;
+  }
+
+  .card-glow::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), hsl(var(--primary) / 0.06), transparent 40%);
+  }
+
+  .card-glow:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Number display */
+  .number-display {
+    @apply font-bold tracking-tight;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Status badges */
+  .status-positive {
+    @apply text-success bg-success/10 border-success/20;
+  }
+
+  .status-negative {
+    @apply text-danger bg-danger/10 border-danger/20;
+  }
+
+  .status-warning {
+    @apply text-warning bg-warning/10 border-warning/20;
+  }
+
+  /* Gradient text */
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  /* Pulse animation for alerts */
+  .pulse-warning {
+    animation: pulse-warning 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-warning {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  /* Fade in animation */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Stagger children */
+  .stagger-children > * {
+    @apply animate-fade-in;
+  }
+
+  .stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+  .stagger-children > *:nth-child(2) { animation-delay: 50ms; }
+  .stagger-children > *:nth-child(3) { animation-delay: 100ms; }
+  .stagger-children > *:nth-child(4) { animation-delay: 150ms; }
+  .stagger-children > *:nth-child(5) { animation-delay: 200ms; }
+  .stagger-children > *:nth-child(6) { animation-delay: 250ms; }
+
+  /* Slide up animation */
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer utilities {
+  /* Semantic color utilities */
+  .text-success {
+    color: hsl(var(--success));
+  }
+
+  .text-warning {
+    color: hsl(var(--warning));
+  }
+
+  .text-danger {
+    color: hsl(var(--danger));
+  }
+
+  .bg-success {
+    background-color: hsl(var(--success));
+  }
+
+  .bg-warning {
+    background-color: hsl(var(--warning));
+  }
+
+  .bg-danger {
+    background-color: hsl(var(--danger));
+  }
+
+  /* Glass effect */
+  .glass {
+    @apply backdrop-blur-md bg-background/80;
+  }
+}
