@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cash-compass-v4';
+const CACHE_NAME = 'cash-compass-v5';
 const urlsToCache = [
     '/',
     '/index.html',
