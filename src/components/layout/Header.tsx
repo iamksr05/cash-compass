@@ -18,7 +18,7 @@ export function Header({ title, subtitle, onMenuClick, onAddTransaction, onNavig
         <Button
           variant="ghost"
           size="icon"
-          className="lg:hidden"
+          className="hidden"
           onClick={onMenuClick}
         >
           <Menu className="h-5 w-5" />

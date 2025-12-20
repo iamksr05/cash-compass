@@ -2,6 +2,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Sidebar } from '@/components/layout/Sidebar';
+import { MobileNav } from '@/components/layout/MobileNav';
 import { Header } from '@/components/layout/Header';
 import { MetricCard } from '@/components/dashboard/MetricCard';
 import { RunwayIndicator } from '@/components/dashboard/RunwayIndicator';
@@ -204,7 +205,7 @@ const Index = () => {
         onClose={() => setSidebarOpen(false)}
       />
 
-      <div className="lg:ml-72">
+      <div className="lg:ml-72 pb-24 lg:pb-0">
         <Header
           title={pageTitle}
           subtitle={businessInfo.name}
@@ -236,7 +237,7 @@ const Index = () => {
             <div className="space-y-8">
 
               {/* Top Row: Key Metrics */}
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
                 <MetricCard
                   title="Current Balance"
                   value={formatCurrency(summary.currentBalance, businessInfo.currency)}
@@ -412,6 +413,12 @@ const Index = () => {
         onClose={() => setShowAddModal(false)}
         onAdd={handleAddTransaction}
         currency={businessInfo.currency}
+      />
+
+      <MobileNav
+        currentPage={currentPage}
+        onNavigate={setCurrentPage}
+        onMenuClick={() => setSidebarOpen(true)}
       />
     </div>
   );

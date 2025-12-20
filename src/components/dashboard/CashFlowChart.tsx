@@ -51,7 +51,7 @@ export function CashFlowChart({ data, currency = 'USD' }: CashFlowChartProps) {
       <h3 className="mb-6 text-lg font-semibold text-foreground">Cash Flow Overview</h3>
       <div className="h-80">
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+          <AreaChart data={data} margin={{ top: 20, right: 10, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id="incomeGradient" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="hsl(158, 60%, 42%)" stopOpacity={0.3} />

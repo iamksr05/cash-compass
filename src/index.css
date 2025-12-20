@@ -137,7 +137,10 @@
   }
 
   @media screen and (max-width: 768px) {
-    input, select, textarea {
+
+    input,
+    select,
+    textarea {
       font-size: 16px !important;
     }
   }
@@ -158,6 +161,7 @@
 }
 
 @layer components {
+
   /* Card styles */
   .card-elevated {
     @apply bg-card rounded-xl border border-border/50;
@@ -209,9 +213,12 @@
   }
 
   @keyframes pulse-warning {
-    0%, 100% {
+
+    0%,
+    100% {
       opacity: 1;
     }
+
     50% {
       opacity: 0.7;
     }
@@ -227,6 +234,7 @@
       opacity: 0;
       transform: translateY(10px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -234,16 +242,33 @@
   }
 
   /* Stagger children */
-  .stagger-children > * {
+  .stagger-children>* {
     @apply animate-fade-in;
   }
 
-  .stagger-children > *:nth-child(1) { animation-delay: 0ms; }
-  .stagger-children > *:nth-child(2) { animation-delay: 50ms; }
-  .stagger-children > *:nth-child(3) { animation-delay: 100ms; }
-  .stagger-children > *:nth-child(4) { animation-delay: 150ms; }
-  .stagger-children > *:nth-child(5) { animation-delay: 200ms; }
-  .stagger-children > *:nth-child(6) { animation-delay: 250ms; }
+  .stagger-children>*:nth-child(1) {
+    animation-delay: 0ms;
+  }
+
+  .stagger-children>*:nth-child(2) {
+    animation-delay: 50ms;
+  }
+
+  .stagger-children>*:nth-child(3) {
+    animation-delay: 100ms;
+  }
+
+  .stagger-children>*:nth-child(4) {
+    animation-delay: 150ms;
+  }
+
+  .stagger-children>*:nth-child(5) {
+    animation-delay: 200ms;
+  }
+
+  .stagger-children>*:nth-child(6) {
+    animation-delay: 250ms;
+  }
 
   /* Slide up animation */
   .animate-slide-up {
@@ -255,6 +280,7 @@
       opacity: 0;
       transform: translateY(20px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -263,6 +289,7 @@
 }
 
 @layer utilities {
+
   /* Semantic color utilities */
   .text-success {
     color: hsl(var(--success));
@@ -291,5 +318,9 @@
   /* Glass effect */
   .glass {
     @apply backdrop-blur-md bg-background/80;
+  }
+
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }
