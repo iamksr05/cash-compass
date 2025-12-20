@@ -64,7 +64,7 @@ export function Sidebar({ currentPage, onNavigate, isOpen, onClose }: SidebarPro
           <div className="flex items-center gap-3">
             <img src="/logo.png" alt="Cash Compass" className="h-10 w-10 object-contain rounded-xl" />
             <div>
-              <h1 className="font-bold text-sidebar-foreground">CashFlow</h1>
+              <h1 className="font-bold text-sidebar-foreground">Cash Compass</h1>
               <p className="text-xs text-sidebar-foreground/60">Money Tracker</p>
             </div>
           </div>

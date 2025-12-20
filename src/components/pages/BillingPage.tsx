@@ -119,11 +119,10 @@ Thank you for your business!
           {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`rounded-xl border-2 p-6 transition-all ${
-                plan.current
+              className={`rounded-xl border-2 p-6 transition-all ${plan.current
                   ? 'border-primary bg-primary/5'
                   : 'border-border hover:border-muted-foreground/30'
-              }`}
+                }`}
             >
               <div className="mb-4 flex items-center justify-between">
                 <h3 className="text-lg font-semibold text-foreground">{plan.name}</h3>

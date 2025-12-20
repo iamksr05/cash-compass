@@ -1,9 +1,8 @@
-const CACHE_NAME = 'cash-compass-v5';
+const CACHE_NAME = 'cash-compass-v6';
 const urlsToCache = [
     '/',
     '/index.html',
     '/manifest.json',
-    '/logo.svg',
     '/logo.png',
     '/src/main.tsx',
 ];

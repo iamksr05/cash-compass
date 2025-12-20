@@ -25,33 +25,33 @@ export default function Auth() {
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
-    
+
     const emailResult = emailSchema.safeParse(email);
     if (!emailResult.success) {
       newErrors.email = emailResult.error.errors[0].message;
     }
-    
+
     const passwordResult = passwordSchema.safeParse(password);
     if (!passwordResult.success) {
       newErrors.password = passwordResult.error.errors[0].message;
     }
-    
+
     if (!isLogin) {
       const nameResult = nameSchema.safeParse(fullName);
       if (!nameResult.success) {
         newErrors.fullName = nameResult.error.errors[0].message;
       }
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
-    
+
     setLoading(true);
     try {
       if (isLogin) {
@@ -92,7 +92,7 @@ export default function Auth() {
         } else {
           toast({
             title: 'Account created!',
-            description: 'Welcome to CashFlow. Let\'s set up your business.',
+            description: 'Welcome to Cash Compass. Let\'s set up your business.',
           });
           navigate('/onboarding');
         }
@@ -107,9 +107,9 @@ export default function Auth() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-primary mb-4">
-            <Wallet className="h-8 w-8 text-primary-foreground" />
+            <img src="/logo.png" alt="Cash Compass" className="h-10 w-10 object-contain" />
           </div>
-          <h1 className="text-3xl font-bold text-foreground">CashFlow</h1>
+          <h1 className="text-3xl font-bold text-foreground">Cash Compass</h1>
           <p className="text-muted-foreground mt-2">
             Simple money tracking for startups
           </p>

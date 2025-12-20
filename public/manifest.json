@@ -36,16 +36,16 @@
   ],
   "screenshots": [
     {
-      "src": "/logo.svg",
+      "src": "/logo.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "form_factor": "wide",
       "label": "Cash Compass Dashboard"
     },
     {
-      "src": "/logo.svg",
+      "src": "/logo.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "form_factor": "narrow",
       "label": "Mobile Dashboard"
     }
