@@ -7,6 +7,7 @@ const urlsToCache = [
     '/src/main.tsx',
 ];
 
+
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
@@ -16,6 +17,7 @@ self.addEventListener('install', (event) => {
     );
     self.skipWaiting();
 });
+
 
 self.addEventListener('fetch', (event) => {
     event.respondWith(
@@ -28,6 +30,7 @@ self.addEventListener('fetch', (event) => {
             })
     );
 });
+
 
 self.addEventListener('activate', (event) => {
     const cacheWhitelist = [CACHE_NAME];
